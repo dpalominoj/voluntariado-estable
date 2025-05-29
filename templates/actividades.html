@@ -1,72 +1,121 @@
 {% extends "base.html" %}
 
 {% block title %}Actividades - KONECTAi{% endblock %}
-{% block styles %}
-    {# You can remove the old CSS file if you're fully transitioning to Tailwind #}
-    {# <link rel="stylesheet" href="{{ url_for('static', filename='estilo-actv.css') }}"> #}
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+{% block styles %} 
+	<link rel="stylesheet" href="{{ url_for('static', filename='estilo-actv.css') }}">
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-<main>
-    <h1 class="text-4xl font-bold text-center my-8">Encuentra tu voluntariado ideal</h1>
 
-    <section class="bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" method="GET" action="#"> {# Acción placeholder para demostración #}
-                <div class="filtro-grupo flex flex-col">
-                    <label for="tipo" class="text-lg font-medium text-gray-700 mb-2">Tipo de Actividad:</label>
-                    <select name="tipo" id="tipo" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md shadow-sm">
-                        <option value="">Todos (Presencial/Virtual)</option>
-                        <option value="presencial">Presencial</option>
-                        <option value="virtual">Virtual</option>
-                    </select>
-                </div>
+<!-- Contenido específico de ACTIVIDADES -->
+<main><h1></br></h2>
 
-                <div class="filtro-grupo flex flex-col">
-                    <label for="accesibilidad" class="text-lg font-medium text-gray-700 mb-2">Nivel de Accesibilidad:</label>
-                    <select name="accesibilidad" id="accesibilidad" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md shadow-sm">
-                        <option value="">Cualquier Nivel</option>
-                        <option value="inclusiva">Actividad Inclusiva</option>
-                        <option value="no_inclusiva">Actividad No Inclusiva</option>
-                    </select>
-                </div>
+<!-- Filtros de búsqueda -->
+<section class="bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
 
-                <div class="filtro-grupo flex flex-col">
-                    <label for="discapacidad" class="text-lg font-medium text-gray-700 mb-2">Tipo de Discapacidad:</label>
-                    <select name="discapacidad" id="discapacidad" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md shadow-sm">
-                        <option value="">Todas las Discapacidades</option>
-                        <option value="visual">Visual</option>
-                        <option value="auditiva">Auditiva</option>
-                        <option value="motora">Motora</option>
-                        <option value="cognitiva">Cognitiva</option>
-                        <option value="otra">Otra</option>
-                    </select>
-                </div>
+    <div class="cont">
 
-                <div class="filtro-grupo flex flex-col">
-                    <label for="habilidad" class="text-lg font-medium text-gray-700 mb-2">Habilidad Requerida:</label>
-                    <select name="habilidad" id="habilidad" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md shadow-sm">
-                        <option value="">Cualquier Habilidad</option>
-                        <option value="comunicacion">Comunicación</option>
-                        <option value="organizacion">Organización</option>
-                        <option value="empatia">Empatía</option>
-                        <option value="informatica">Informática</option>
-                        <option value="enseñanza">Enseñanza</option>
-                        <option value="manejo_grupos">Manejo de Grupos</option>
-                        <option value="arte">Arte</option>
-                        <option value="deporte">Deporte</option>
-                        <option value="manualidades">Manualidades</option>
-                    </select>
-                </div>
+        <h2>Encuentra tu voluntariado ideal</h2>
 
-                <button type="submit" class="col-span-1 md:col-span-2 lg:col-span-3 mt-4 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    Filtrar Actividades
-                </button>
-            </form>
-        </div>
-    </section>
-	
+        <form class="filtros-form" method="GET" action="#"> {# Acción placeholder para demostración #}
+
+            <div class="filtro-grupo">
+
+                <label for="tipo">Tipo de Actividad:</label>
+
+                <select name="tipo" id="tipo">
+
+                    <option value="">Todos (Presencial/Virtual)</option>
+
+                    <option value="presencial">Presencial</option>
+
+                    <option value="virtual">Virtual</option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="filtro-grupo">
+
+                <label for="accesibilidad">Nivel de Accesibilidad:</label>
+
+                <select name="accesibilidad" id="accesibilidad">
+
+                    <option value="">Cualquier Nivel</option>
+
+                    <option value="inclusiva">Actividad Inclusiva</option>
+
+                    <option value="no_inclusiva">Actividad No Inclusiva</option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="filtro-grupo">
+
+                <label for="discapacidad">Tipo de Discapacidad:</label>
+
+                <select name="discapacidad" id="discapacidad">
+
+                    <option value="">Todas las Discapacidades</option>
+
+                    <option value="visual">Visual</option>
+
+                    <option value="auditiva">Auditiva</option>
+
+                    <option value="motora">Motora</option>
+
+                    <option value="cognitiva">Cognitiva</option>
+
+                    <option value="otra">Otra</option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="filtro-grupo">
+
+                <label for="habilidad">Habilidad Requerida:</label>
+
+                <select name="habilidad" id="habilidad">
+
+                    <option value="">Cualquier Habilidad</option>
+
+                    <option value="comunicacion">Comunicación</option>
+
+                    <option value="organizacion">Organización</option>
+
+                    <option value="empatia">Empatía</option>
+
+                    <option value="informatica">Informática</option>
+
+                    <option value="enseñanza">Enseñanza</option>
+
+                    <option value="manejo_grupos">Manejo de Grupos</option>
+
+                    <option value="arte">Arte</option>
+
+                    <option value="deporte">Deporte</option>
+
+                    <option value="manualidades">Manualidades</option>
+
+                </select>
+
+            </div><button type="submit" class="btn-p">Filtrar Actividades</button>
+
+        </form>
+
+    </div>
+
+</section>
 	<!-- Actividades disponibles -->
 	<section class="actividades-container">
 	  <div class="cont">

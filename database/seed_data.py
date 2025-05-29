@@ -37,7 +37,7 @@ def seed_database():
                 cupo_maximo=20,
                 estado='activa',
                 organizacion='Biblioteca Nacional del Perú',
-                imagen='lectura_inclusiva.jpg',
+                imagen='images/lectura_inclusiva.jpg',
                 compatibilidad=85,
                 nivel_accesibilidad=5
             ),

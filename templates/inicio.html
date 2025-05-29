@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KONECTAi - Voluntariado Inclusivo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.userway.org/widget.js" data-account="w1p59Fihx2" data-position="5"></script>
+  <!--Ruta_Directa_html <link rel="stylesheet" href="estilos.css"> -->
+  <!--Ruta_Directa_html <script src="javascript.js" defer></script> -->
+  <!--Ruta_Flash --> <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+  <!--Ruta_Flash --> <script src="{{ url_for('static', filename='javascript.js') }}" defer></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="cont">
+      <div class="logo"><a href="{{ url_for('inicio') }}" class="a-logolink">       
+		<span>🌐</span> <!-- svg logo 🌎 -->
+        <span>KONECTAi</span></a>  
+      </div>
+      <ul class="menu">
+        <li><a href="{{ url_for('inicio') }}" class="a-menulink">INICIO</a></li>
+        <li><a href="{{ url_for('actividades') }}" class="a-menulink">ACTIVIDADES</a></li>
+        <li><a href="{{ url_for('contacto') }}" class="a-menulink">CONTACTO</a></li>
+        <li><a href="{{ url_for('ayuda') }}" class="a-menulink">AYUDA</a></li>
+      </ul>
+	<div class="botones">
+		{% if session['usuario_id'] %}
+		  <div class="usuario-info">		    	
+		    <span class="nombre-usuario">{{ session.usuario_nombre.split()[0] }}</span>
+			<a href="{{ url_for('dashboard') }}">
+			<svg class="ic-perfil" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+				<path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/>
+			</svg> </a>
+		    <a href="{{ url_for('logout') }}" class="btn-s">Cerrar sesión</a>
+		  </div>
+		{% else %}
+		  <button id="m-oscuro" class="btn-oscuro" onclick="modoOscuro()">🌙</button>
+		  <button id="signInBtn" class="btn-s" onclick="abrirLogin()">Iniciar Sesión</button>
+		  <button id="signUpBtn" class="btn-p" onclick="abrirRegistro()">Registrarse</button>
+		{% endif %}
+      	</div>
+      <button id="mobileMenuBtn" class="btn-menu">☰</button>
+    </div>
+    <div id="mobileMenu" class="menu-movil">
+      <ul>
+        <li><a href="{{ url_for('inicio') }}" class="a-menulink">Inicio</a></li>
+        <li><a href="{{ url_for('actividades') }}" class="a-menulink">Programas</a></li>
+        <li><a href="{{ url_for('contacto') }}" class="a-menulink">Sobre Nosotros</a></li>
+        <li><a href="{{ url_for('ayuda') }}" class="a-menulink">Contacto</a></li>
+        <li><button class="btn-s" onclick="abrirLogin()">Iniciar Sesión</button></li>
+        <li><button class="btn-p" onclick="abrirRegistro()">Registrarse</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hcont cont">
+      <div class="texto-hero">
+        <h1>Voluntariado Inclusivo<br><span>Para un mundo mejor</span></h1>
+        <p>Únete a nuestra comunidad de voluntarios y marca la diferencia en la vida de quienes más lo necesitan. Creamos espacios inclusivos donde todos pueden participar.</p>
+        <div class="bot-hero">
+          <button class="btn-p" onclick="abrirRegistro()">Comenzar ahora</button>
+          <button class="btn-s" ><a href="{{ url_for('dashboard') }}">Conocer más</a></button>
+        </div>
+      </div>
+      <div class="img-hero" >
+		<svg class="hero-svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+			<circle cx="250" cy="150" r="100" fill="#ffffff" fill-opacity="0.2"></circle>
+			<g transform="translate(150, 50)">
+				<circle cx="50" cy="50" r="40" fill="#ffffff"></circle>
+				<circle cx="65" cy="40" r="10" fill="#4f46e5"></circle>
+				<circle cx="35" cy="40" r="10" fill="#4f46e5"></circle>
+				<path d="M30,65 Q50,80 70,65" stroke="#4f46e5" stroke-width="3" fill="none"></path>
+			</g>
+			<g transform="translate(250, 50)">
+				<circle cx="50" cy="50" r="40" fill="#ffffff"></circle>
+				<circle cx="65" cy="40" r="10" fill="#4f46e5"></circle>
+				<circle cx="35" cy="40" r="10" fill="#4f46e5"></circle>
+				<path d="M30,65 Q50,80 70,65" stroke="#4f46e5" stroke-width="3" fill="none"></path>
+			</g>
+			<g transform="translate(200, 150)">
+				<circle cx="50" cy="50" r="40" fill="#ffffff"></circle>
+				<circle cx="65" cy="40" r="10" fill="#4f46e5"></circle>
+				<circle cx="35" cy="40" r="10" fill="#4f46e5"></circle>
+				<path d="M30,65 Q50,80 70,65" stroke="#4f46e5" stroke-width="3" fill="none"></path>
+			</g>
+			<path d="M200,100 Q250,50 300,100" stroke="#ffffff" stroke-width="3" fill="none"></path>
+			<path d="M200,200 Q250,250 300,200" stroke="#ffffff" stroke-width="3" fill="none"></path>
+			<path d="M250,150 L250,200" stroke="#ffffff" stroke-width="3" fill="none"></path>
+		</svg>		
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Programas -->
+    <section class="prog">
+      <h1>Nuestros Programas de Voluntariado</h1>
+      <p>Ofrecemos oportunidades según tus habilidades e intereses.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="icono i1"><!-- svg -->🌻</div>
+          <div class="cuerpo">
+			  <h3>Educación Inclusiva</h3>
+			  <p>Apoya a estudiantes con necesidades especiales.</p>
+			  <button class="btn-p"><a class="a-particip" href="{{ url_for('voluntario') }}">Participar</a></button>
+		  </div>
+        </article>
+		<article class="card">
+          <div class="icono i2"><!-- svg -->🌼</div>
+		  <div class="cuerpo">
+			  <h3>Medio Ambiente</h3>
+			  <p>Participa en proyectos de reforestación.</p>
+			  <button class="btn-p"><a class="a-particip" href="{{ url_for('organizador') }}">Participar</a></button>
+		  </div>
+        </article>
+		<article class="card">
+          <div class="icono i3"><!-- svg -->🌸</div>
+		  <div class="cuerpo">
+			  <h3>Apoyo Comunitario</h3>
+			  <p>Colabora en comedores sociales y visitas a residencias de ancianos.</p>
+			  <button class="btn-p"><a class="a-particip" href="{{ url_for('administrador') }}">Participar</a></button>
+		  </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Impacto -->
+    <section class="impacto">
+      <h2>Nuestro Impacto</h2>
+      <p>Juntos construimos un mundo más inclusivo.</p>
+      <div class="stats">
+        <div class="item">
+          <div class="ic-i"><!-- svg -->🧑‍💻</div>
+          <h3>5,000+</h3>
+          <p>Voluntarios activos</p>
+        </div>
+        <div class="item">
+          <div class="ic-i"><!-- svg -->🏢</div>
+          <h3>120+</h3>
+          <p>Proyectos realizados</p>
+        </div>
+		<div class="item">
+          <div class="ic-i"><!-- svg -->📍</div>
+          <h3>50+</h3>
+          <p>Comunidades beneficiadas</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="test">
+      <h2>Testimonios</h2>
+      <p>Conoce las experiencias de nuestros voluntarios.</p>
+      <div class="test-cards">
+        <div class="test-card">
+          <div class="encab">
+			<div class="avatar">M</div>
+			<h4>María González</h4>
+		  </div>
+		  <p>Voluntaria desde 2020</p>
+          <p>"Participar en los programas de voluntariado inclusivo ha sido una de las experiencias más enriquecedoras de mi vida."</p>
+        </div>
+		<div class="test-card">
+          <div class="encab">
+			<div class="avatar">J</div>
+			<h4>Juan Pérez</h4>
+		  </div>
+		  <p>Beneficiario</p>
+          <p>"Gracias a los programas educativos inclusivos, mi hijo ha podido desarrollar habilidades que pensábamos imposibles."</p>
+        </div>
+		<div class="test-card">
+          <div class="encab">
+			<div class="avatar">L</div>
+			<h4>Laura Martínez</h4>			
+		  </div>
+		  <p>Coordinadora</p>
+          <p>"Ver cómo personas de diferentes capacidades trabajan juntas por un objetivo común es inspirador."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <h2>¿Listo para unirte?</h2>
+      <p>Ayúdanos a construir un mundo inclusivo.</p>
+      <button id="ctaSignUpBtn" class="btn-p" onclick="abrirRegistro()">Registrarse ahora</button>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="pie-cont">
+      <div class="fbox info">
+        <h3 class="logo-f">🌐<!-- svg --><span>KONECTAi</span></h3>
+        <span>Creando oportunidades de voluntariado <br> inclusivo para todos.</span>
+      </div>
+      <div class="fbox links">
+        <div>
+          <h3>Programas</h3>
+          <ul>
+			<li>Educación Inclusiva</li>
+			<li>Deporte Inclusivo</li>
+			<li>Medio Ambiente</li>
+		  </ul>
+        </div>
+      </div>
+	  <div class="fbox nosotros">
+	  <h3>Sobre Nosotros</h3>
+        <ul>
+          <li>Nuestra Misión</li>
+          <li>Alianzas</li>
+          <li>Transparencia</li>
+        </ul>
+      </div>
+      <div class="fbox contacto">
+	  <h3>Contacto</h3>
+        <ul>
+          <li>Calle Principal S/N, Huancayo</li>
+          <li>info.grupof@konectai.org</li>
+          <li>+51 923 456 789</li>
+        </ul>
+      </div>
+    </div>
+	<div class="linea cont"> </div>
+	<p class="cpy">© 2025. Todos los derechos reservados.</p>   
+  </footer>
+
+  <!-- Modal Iniciar Sesión -->
+  <div id="signInModal" class="modal">
+	<div class="fondo_frm"> </div>
+	<div class="cont_frm">
+	  <span class="cerrarPopup" onclick="cerrarMod()">×</span>
+	  <div class="encab_frm">
+	    <h3>Iniciar Sesión</h3>		
+	  </div>
+	  <form class="formulario" action="{{ url_for('login') }}" method="POST">
+	    <label for="user">Usuario (DNI)</label><input type="text" id="usr" name="usuario" pattern="[0-9]{8}" maxlength="8" required>
+	    <label for="psw">Contraseña</label><input type="password" id="psw" name="contraseña" minlength="8" maxlength="20" spellcheck="false" autocapitalize="off" required>
+	    <div class="olvido-psw">¿Olvidaste tu contraseña?</div>
+	    <button type="submit" class="iniciar-ses">Iniciar Sesión</button>
+	  </form>
+	  <div class="pie_frm">
+		<p>¿No tienes cuenta? <button type="button" onclick="abrirRegistro()">>Registrate</button></p>
+	  </div>
+	</div>
+  </div> 
+  <!-- Modal Registro -->
+	<div id="signUpModal" class="modal">
+	  <div class="fondo_frm"></div>
+	  
+	  <div class="cont_frm">
+	    <span class="cerrarPopup" onclick="cerrarMod()">×</span>
+	    
+	    <div class="encab_frm">
+	      <h3>Crear Cuenta</h3>  
+	    </div>
+	    
+	    <form class="formulario" action="{{ url_for('registro') }}" method="POST">	      
+	      <div class="nom-apel">
+	        <div>
+	          <label for="nombre">Nombres</label>
+	          <input type="text" id="nom" name="nombres" required>
+	        </div>
+	        <div>
+	          <label for="dni">N° de DNI</label>
+	          <input type="text" id="dni" name="dni" pattern="[0-9]{8}" maxlength="8" inputmode="numeric" required>
+	        </div>
+	      </div>
+	
+	      <label for="psw1">Contraseña</label>
+	      <input type="password" id="psw1" name="passw1" minlength="8" maxlength="20" autocapitalize="off" required>
+	
+	      <label for="psw2">Confirmar contraseña</label>
+	      <input type="password" id="psw2" name="psw2" minlength="8" maxlength="20" autocapitalize="off" required>
+		    
+	      <label for="perfil">Tipo de perfil</label>
+	      <div>
+		<input type="radio" id="voluntario" name="perfil" value="voluntario" checked> <label for="voluntario" class="perfil-btn">Voluntario/a</label>		          
+		<input type="radio" id="organizador" name="perfil" value="organizador"> <label for="organizador" class="perfil-btn">Organizador</label>		
+	      </div>		
+	
+	      <fieldset>
+	        <legend>¿Desea indicar si cuenta con alguna discapacidad?</legend>
+	        <div class="rpta">
+	          <input type="radio" name="accs" id="disc_no" value="no" checked> <label for="disc_no">No, ninguna</label>
+	          <input type="radio" name="accs" id="disc_si" value="si"> <label for="disc_si">Sí, tengo condiciones limitantes</label>	          
+	        </div>
+	
+	        <div id="selDisc" class="sel">
+	          <button type="button" id="btnDiscapacidad">
+	            — Selecciona el tipo de limitación —
+	            <span>&nbsp;▼</span>
+	          </button>
+	          <div class="sel-cont">
+	            <label><input type="checkbox" name="disc[]" value="visual">Visual (limitación en percepción óptica)</label>
+	            <label><input type="checkbox" name="disc[]" value="auditiva">Auditiva (dificultad en la comprensión de sonido)</label>
+	            <label><input type="checkbox" name="disc[]" value="motriz">Motriz (dificultad en la movilidad física)</label>
+	            <label><input type="checkbox" name="disc[]" value="cognitiva">Cognitiva (limitación en proceso de aprendizaje)</label>
+	            <label><input type="checkbox" name="disc[]" value="otra" id="chkOtraDisc">Ingresar Otro</label>
+	            <textarea id="otraDisc" name="otra_discap" placeholder="Describe otra limitación"></textarea>
+	          </div>
+	        </div>
+	      </fieldset>
+	
+	      <fieldset>
+	        <legend>¿Tiene alguna preferencia para voluntariado?</legend>
+	        <div id="selPref" class="sel">
+	          <button type="button" id="btnPrefer">
+	            — Seleccione sus preferencias —
+	            <span>&nbsp;▼</span>
+	          </button>
+	          <div class="sel-cont">
+	            <label><input type="checkbox" name="pref[]" value="deporte">Eventos deportivos</label>
+	            <label><input type="checkbox" name="pref[]" value="m_ambiente">Medio ambiente</label>
+	            <label><input type="checkbox" name="pref[]" value="educacion">Educación</label>
+	          </div>
+	        </div>
+	      </fieldset>
+		    
+	      <div class="checkbox-container">
+                <input type="checkbox" id="acepto_datos" name="acepto_datos" required>
+                <label for="acepto_datos">Acepto la<a href="{{ url_for('static', filename='Politica_de_Privacidad.pdf') }}" target="_blank">Política de Privacidad de Datos Personales</a> </label>
+	      </div>
+	
+	      <button type="submit" class="iniciar-reg">Registrarse</button>
+	    </form>
+	
+	    <div class="pie_frm">
+	      <p>¿Ya tienes una cuenta? 
+	        <button type="button" onclick="abrirLogin()">Inicia sesión</button>
+	      </p>
+	    </div>
+	  </div>
+	</div>
+
+    <!-- Mensaje Jinja flash -->
+	{% with mensajes = get_flashed_messages(with_categories=true) %}
+	  {% if mensajes %}
+	    {% for categoria, mensaje in mensajes %}
+	      <div class="mensaje-flash {{ categoria }}">
+	        <h5>{{ mensaje|safe }}</h5>
+	      </div>
+	    {% endfor %}
+	  {% endif %}
+	{% endwith %}
+</body>
+</html>

@@ -40,7 +40,7 @@
 	      <div class="actividad-card">
 	        <!-- Imagen de la actividad -->
 	        <div class="actividad-imagen">
-	          <img src="{{ url_for('static', filename=actividad.imagen) }}" alt="{{ actividad.nombre }}">
+	          <img src="{{ url_for('static', filename='images/' ~ actividad.imagen) }}" alt="{{ actividad.nombre }}">
 	          <div class="compatibilidad-badge">{{ actividad.compatibilidad }}% Compatible</div>
 	        </div>
 	        

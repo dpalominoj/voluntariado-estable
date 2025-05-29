@@ -11,23 +11,57 @@
 <main><h1></br></h2>
 	<!-- Filtros de búsqueda -->
 	<section class="filtros-actividades">
-        <div class="cont">
-            <h2>Encuentra tu voluntariado ideal</h2>
-            <form class="filtros-form" method="GET" action="{{ url_for('actividades_filtradas') }}"> {# Asume una ruta Flask para manejar filtros #}
-                <select name="tipo">
-                    <option value="">Todos los tipos (Presencial/Virtual)</option>
+    <div class="cont">
+        <h2>Encuentra tu voluntariado ideal</h2>
+        <form class="filtros-form" method="GET" action="{{ url_for('actividades_filtradas') }}">
+            <div class="filtro-grupo">
+                <label for="tipo">Tipo de Actividad:</label>
+                <select name="tipo" id="tipo">
+                    <option value="">Todos (Presencial/Virtual)</option>
                     <option value="presencial" {% if request.args.get('tipo') == 'presencial' %}selected{% endif %}>Presencial</option>
                     <option value="virtual" {% if request.args.get('tipo') == 'virtual' %}selected{% endif %}>Virtual</option>
                 </select>
-                <select name="accesibilidad">
-                    <option value="">Nivel de accesibilidad</option>
+            </div>
+
+            <div class="filtro-grupo">
+                <label for="accesibilidad">Nivel de Accesibilidad:</label>
+                <select name="accesibilidad" id="accesibilidad">
+                    <option value="">Cualquier Nivel</option>
                     <option value="inclusiva" {% if request.args.get('accesibilidad') == 'inclusiva' %}selected{% endif %}>Actividad Inclusiva</option>
                     <option value="no_inclusiva" {% if request.args.get('accesibilidad') == 'no_inclusiva' %}selected{% endif %}>Actividad No Inclusiva</option>
                 </select>
-                <button type="submit" class="btn-p">Filtrar</button>
-            </form>
-        </div>
-    </section>
+            </div>
+
+            <div class="filtro-grupo">
+                <label for="discapacidad">Tipo de Discapacidad:</label>
+                <select name="discapacidad" id="discapacidad">
+                    <option value="">Todas las Discapacidades</option>
+                    <option value="visual" {% if request.args.get('discapacidad') == 'visual' %}selected{% endif %}>Visual</option>
+                    <option value="auditiva" {% if request.args.get('discapacidad') == 'auditiva' %}selected{% endif %}>Auditiva</option>
+                    <option value="motora" {% if request.args.get('discapacidad') == 'motora' %}selected{% endif %}>Motora</option>
+                    <option value="cognitiva" {% if request.args.get('discapacidad') == 'cognitiva' %}selected{% endif %}>Cognitiva</option>
+                    <option value="otra" {% if request.args.get('discapacidad') == 'otra' %}selected{% endif %}>Otra</option>
+                </select>
+            </div>
+
+            <div class="filtro-grupo">
+                <label for="habilidad">Habilidad Requerida:</label>
+                <select name="habilidad" id="habilidad">
+                    <option value="">Cualquier Habilidad</option>
+                    <option value="comunicacion" {% if request.args.get('habilidad') == 'comunicacion' %}selected{% endif %}>Comunicación</option>
+                    <option value="organizacion" {% if request.args.get('habilidad') == 'organizacion' %}selected{% endif %}>Organización</option>
+                    <option value="empatia" {% if request.args.get('habilidad') == 'empatia' %}selected{% endif %}>Empatía</option>
+                    <option value="informatica" {% if request.args.get('habilidad') == 'informatica' %}selected{% endif %}>Informática</option>
+                    <option value="enseñanza" {% if request.args.get('habilidad') == 'enseñanza' %}selected{% endif %}>Enseñanza</option>
+                    <option value="manejo_grupos" {% if request.args.get('habilidad') == 'manejo_grupos' %}selected{% endif %}>Manejo de Grupos</option>
+                    {# Puedes añadir más opciones de habilidades aquí #}
+                </select>
+            </div>
+
+            <button type="submit" class="btn-p">Filtrar Actividades</button>
+        </form>
+    </div>
+</section>
 	
 	<!-- Actividades disponibles -->
 	<section class="actividades-container">

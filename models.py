@@ -22,7 +22,7 @@ class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     dni = db.Column(db.String(8), unique=True, nullable=False)
     nombres = db.Column(db.String(100), nullable=False)
-    apellidos = db.Column(db.String(100), nullable=False)
+    apellidos = db.Column(db.String(100), nullable=True)
     password_hash = db.Column(db.String(256), nullable=False)
     fecha_registro = db.Column(db.DateTime, default=datetime.utcnow)
     ultimo_acceso = db.Column(db.DateTime, nullable=True)

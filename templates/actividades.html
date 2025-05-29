@@ -11,25 +11,23 @@
 <main><h1></br></h2>
 	<!-- Filtros de búsqueda -->
 	<section class="filtros-actividades">
-	  <div class="cont">
-	    <h2>Encuentra tu voluntariado ideal</h2>
-	    <form class="filtros-form">
-	      <select name="tipo">
-	        <option value="">Todos los tipos</option>
-	        <option value="educacion">Educación</option>
-	        <option value="medioambiente">Medio Ambiente</option>
-	        <!-- Más opciones -->
-	      </select>
-	      <select name="accesibilidad">
-	        <option value="">Nivel de accesibilidad</option>
-	        <option value="alta">Alta accesibilidad</option>
-	        <option value="media">Media accesibilidad</option>
-	        <!-- Más opciones -->
-	      </select>
-	      <button type="submit" class="btn-p">Filtrar</button>
-	    </form>
-	  </div>
-	</section>
+        <div class="cont">
+            <h2>Encuentra tu voluntariado ideal</h2>
+            <form class="filtros-form" method="GET" action="{{ url_for('actividades_filtradas') }}"> {# Asume una ruta Flask para manejar filtros #}
+                <select name="tipo">
+                    <option value="">Todos los tipos (Presencial/Virtual)</option>
+                    <option value="presencial" {% if request.args.get('tipo') == 'presencial' %}selected{% endif %}>Presencial</option>
+                    <option value="virtual" {% if request.args.get('tipo') == 'virtual' %}selected{% endif %}>Virtual</option>
+                </select>
+                <select name="accesibilidad">
+                    <option value="">Nivel de accesibilidad</option>
+                    <option value="inclusiva" {% if request.args.get('accesibilidad') == 'inclusiva' %}selected{% endif %}>Actividad Inclusiva</option>
+                    <option value="no_inclusiva" {% if request.args.get('accesibilidad') == 'no_inclusiva' %}selected{% endif %}>Actividad No Inclusiva</option>
+                </select>
+                <button type="submit" class="btn-p">Filtrar</button>
+            </form>
+        </div>
+    </section>
 	
 	<!-- Actividades disponibles -->
 	<section class="actividades-container">

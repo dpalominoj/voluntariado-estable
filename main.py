@@ -44,7 +44,7 @@ def participar():
 @app.route('/registro', methods=['POST'])
 def registro():
     nombres = request.form.get('nombres')
-    #apellidos = request.form.get('apellidos')
+    apellidos = request.form.get('apellidos')
     dni = request.form.get('dni')
     passw1 = request.form.get('passw1')
     passw2 = request.form.get('psw2')
@@ -68,7 +68,7 @@ def registro():
     nuevo_usuario = Usuario(
         dni=dni,
         nombres=nombres,
-        #apellidos=apellidos
+        apellidos=None
     )
     nuevo_usuario.set_password(passw1)
     

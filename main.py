@@ -176,9 +176,7 @@ def ayuda():
     
 @app.route('/api/colab/actualizar_compatibilidad/<int:actividad_id>', methods=['POST'])
 def actualizar_compatibilidad_desde_colab(actividad_id):
-    # URL expuesta por tu Colab usando ngrok o similar
-    # REEMPLAZA por la URL pública real del API de Colab que entrega la compatibilidad:
-    colab_api_url = f"https://<TU-NGROK-URL>.ngrok.io/compatibilidad_api/{actividad_id}"
+    colab_api_url = f"https://<NGROK-URL>.ngrok.io/compatibilidad_api/{actividad_id}"
 
     try:
         r = requests.get(colab_api_url)

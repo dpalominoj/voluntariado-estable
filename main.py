@@ -68,8 +68,6 @@ def registro():
     nuevo_usuario = Usuario(
         dni=dni,
         nombres=nombres,
-        apellidos='none',
-        ultimo_acceso='2025-05-29 12:45:00'
     )
     nuevo_usuario.set_password(passw1)
     

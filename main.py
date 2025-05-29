@@ -68,7 +68,7 @@ def registro():
     nuevo_usuario = Usuario(
         dni=dni,
         nombres=nombres,
-        apellidos=apellidos
+        #apellidos=apellidos
     )
     nuevo_usuario.set_password(passw1)
     
